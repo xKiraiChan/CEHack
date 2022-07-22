@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="42">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"CEHack"</Description>
+      <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{$lua}
+
+[ENABLE]
+
+_G.ceh = {}
+_G.ceh.util = {}
+_G.ceh.util.withTmpVar = function(size, callback)
+    local memory = allocateMemory(size)
+    local result = {callback(memory)}
+    table.insert(result, readQword(memory))
+    deAlloc(memory)
+    return unpack(result)
+end
+_G.ceh.util.activate = function(name)
+    for i = 0, AddressList.Count - 1, 1 do
+        if (AddressList[i].Description == name) then
+            AddressList[i].Active = true
+            break
+        end
+    end
+end
+
+[DISABLE]
+
+_G.ceh = nil
+
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>1</ID>
+          <Description>"IL2CPP Library"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$lua}
+
+if syntaxcheck then return end
+local script = dofile("src/IL2CPPLibrary.lua")
+
+[ENABLE]
+script(true)
+
+[DISABLE]
+script(false)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>2</ID>
+          <Description>"OnUpdate Hook"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$lua}
+
+if syntaxcheck then return end
+local script = dofile("src/OnUpdateHook.lua")
+
+[ENABLE]
+script(true)
+
+[DISABLE]
+script(false)
+
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <LuaScript>if syntaxcheck then return end
+
+-- Auto start the CEH script
+for i = 0, AddressList.Count - 1, 1 do
+    if (AddressList[i].Description == "CEHack") then
+       AddressList[i].Active = true
+       break
+    end
+end
+</LuaScript>
+</CheatTable>

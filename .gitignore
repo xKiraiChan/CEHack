@@ -1,0 +1,4 @@
+# Cheat Engine will automatically load a cheat table that you saved
+# if it has the same name as the process you attach to
+# I have a hard link between CEHack.CT and VRChat.CT
+VRChat.CT
