@@ -8,40 +8,42 @@
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{$lua}
 
-[ENABLE]
+if syntaxcheck then return end
+local script = dofile("src/CEHack.lua")
 
-_G.ceh = {}
-_G.ceh.util = {}
-_G.ceh.util.withTmpVar = function(size, callback)
-    local memory = allocateMemory(size)
-    local result = {callback(memory)}
-    table.insert(result, readQword(memory))
-    deAlloc(memory)
-    return unpack(result)
-end
-_G.ceh.util.activate = function(name)
-    for i = 0, AddressList.Count - 1, 1 do
-        if (AddressList[i].Description == name) then
-            AddressList[i].Active = true
-            break
-        end
-    end
-end
+[ENABLE]
+script(true)
 
 [DISABLE]
-
-_G.ceh = nil
+script(false)
 
 </AssemblerScript>
       <CheatEntries>
         <CheatEntry>
           <ID>1</ID>
-          <Description>"IL2CPP Library"</Description>
+          <Description>"IL2CPP API"</Description>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{$lua}
 
 if syntaxcheck then return end
-local script = dofile("src/IL2CPPLibrary.lua")
+local script = dofile("src/IL2CPP/API.lua")
+
+[ENABLE]
+script(true)
+
+[DISABLE]
+script(false)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>3</ID>
+          <Description>"WASM Runtime"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$lua}
+
+if syntaxcheck then return end
+local script = dofile("src/WebAssembly/Runtime.lua")
 
 [ENABLE]
 script(true)

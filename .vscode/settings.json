@@ -5,6 +5,16 @@
         "ceh",
         "readPointer",
         "readString",
-        "writeString"
+        "writeString",
+        "deAlloc",
+        "allocateMemory",
+        "readQword",
+        "AddressList",
+        "executeCode",
+        "il2cpp",
+        "createMemoryStream",
+        "writeInteger",
+        "injectDll",
+        "showMessage"
     ]
 }
