@@ -1,6 +1,6 @@
 return function(state)
     if state then
-        ceh.util.activate("IL2CPP Library")
+        ceh.util.activate("IL2CPP API")
 
         local domain = il2cpp.domain_get();
         print("IL2CPP Domain at " .. string.format("0x%X", domain))

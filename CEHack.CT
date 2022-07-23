@@ -9,13 +9,14 @@
       <AssemblerScript>{$lua}
 
 if syntaxcheck then return end
-local script = dofile("src/CEHack.lua")
 
 [ENABLE]
+local script = dofile("src/CEHack.lua")
 script(true)
+ceh.modules[memrec.ID] = script
 
 [DISABLE]
-script(false)
+ceh.modules[memrec.ID](false)
 
 </AssemblerScript>
       <CheatEntries>
@@ -26,13 +27,12 @@ script(false)
           <AssemblerScript>{$lua}
 
 if syntaxcheck then return end
-local script = dofile("src/IL2CPP/API.lua")
 
 [ENABLE]
-script(true)
+ceh.modules.load(memrec.ID, "src/IL2CPP/API.lua")
 
 [DISABLE]
-script(false)
+ceh.modules.unload(memrec.ID)
 
 </AssemblerScript>
         </CheatEntry>
@@ -43,13 +43,12 @@ script(false)
           <AssemblerScript>{$lua}
 
 if syntaxcheck then return end
-local script = dofile("src/WebAssembly/Runtime.lua")
 
 [ENABLE]
-script(true)
+ceh.modules.load(memrec.ID, "src/WebAssembly/Runtime.lua")
 
 [DISABLE]
-script(false)
+ceh.modules.unload(memrec.ID)
 
 </AssemblerScript>
         </CheatEntry>
@@ -60,13 +59,12 @@ script(false)
           <AssemblerScript>{$lua}
 
 if syntaxcheck then return end
-local script = dofile("src/OnUpdateHook.lua")
 
 [ENABLE]
-script(true)
+ceh.modules.load(memrec.ID, "src/OnUpdateHook.lua")
 
 [DISABLE]
-script(false)
+ceh.modules.unload(memrec.ID)
 
 </AssemblerScript>
         </CheatEntry>
